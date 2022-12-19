@@ -1,4 +1,4 @@
-type Chainable = {
-  option(key: string, value: any): any
-  get(): any
+type Chainable<options = {}> = {
+  option<K extends string, V>(key: K, value: V): Chainable<Omit<options, K> & { [S in K]: V}>,
+  get(): options
 }
